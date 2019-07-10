@@ -1,18 +1,27 @@
 const { MONGO_DB_URL } = require('../../config.js');
-
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+const mongo = require('mongodb').MongoClient;
 
 const url = MONGO_DB_URL;
 
-const client = new MongoClient(url, { useNewUrlParser: true });
+const addSnack = (snackItem) => {
+  mongo.connect(url, (err, client) => {
+    if (err) console.log('MongoDB connection error');
+    console.log('Successfully connected to Mongo DB');
+    const db = client.db('snack-track');
 
-client.connect((err, db) => {
-  assert.equal(null, err);
-  console.log('Successfully connected to Mongo DB');
-  client.close();
-});
+    db.collection('snacks').insertOne(snackItem)
+    .then((res) => {
+      console.log(`Snack item '${snackItem.name}' added to db with id '${res.insertedId}'`);
+    })
+    .catch((err) => {
+      console.log('Error occurred');
+      console.log(err);
+    })
 
+    client.close();
+  })
+}
 
-
-
+module.exports = {
+  addSnack
+}
