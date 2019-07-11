@@ -1,0 +1,16 @@
+{
+  "Water": {
+    "name": "Water"
+  },
+  "RXBAR": {
+    "name": "RXBAR",
+    "protein": "",
+    "fat": "",
+    "carbs": "",
+    "fiber": "",
+    "sugar": "",
+    "servingSize": "",
+    "image": "",
+    "nutritionLabel": ""
+  }
+}
