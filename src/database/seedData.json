@@ -1,16 +1,53 @@
 {
   "Water": {
-    "name": "Water"
+    "userId": "null",
+    "name": "Water",
+    "servingSize": "1 cup (8 oz)",
+    "calories": "0",
+    "fat": "0",
+    "carb": "0",
+    "fiber": "0",
+    "sugar": "0",
+    "protein": "0",
+    "isUserAdded": "false",
+    "imageUrl": "https://sojo.net/sites/default/files/blog/shutterstock_65621872_0.jpg",
+    "nutritionLabelUrl": "null"
   },
-  "RXBAR": {
-    "name": "RXBAR",
-    "protein": "",
-    "fat": "",
-    "carbs": "",
-    "fiber": "",
-    "sugar": "",
-    "servingSize": "",
-    "image": "",
-    "nutritionLabel": ""
+  "RXBAR - Chocolate Sea Salt": {
+    "name": "RXBAR Chocolate Sea Salt",
+    "servingSize": "1 bar",
+    "calories": "210",
+    "fat": "9",
+    "carb": "23",
+    "fiber": "5",
+    "sugar": "13",
+    "protein": "12",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61sGR8cMrKL._SL1000_.jpg",
+    "nutritionLabelUrl": "https://www.rxbar.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/r/x/rxbar_chocolateseasalt_03.jpg"
+  },
+  "RXBAR - Blueberry": {
+    "name": "RXBAR Blueberry",
+    "servingSize": "1 bar",
+    "calories": "210",
+    "fat": "9",
+    "carb": "23",
+    "fiber": "5",
+    "sugar": "13",
+    "protein": "12",
+    "imageUrl": "https://target.scene7.com/is/image/Target/GUEST_824d4769-b0ab-4b71-b41b-d15849068a6b?wid=1464&hei=1464&fmt=webp",
+    "nutritionLabelUrl": "https://www.rxbar.com/media/catalog/product/cache/b2fb52fb57b61bdf39ccfa948cd6fc9c/r/x/rxbar_blueberry_03.jpg"
+  },
+  "Fritos": {
+    "userId": "null",
+    "name": "Fritos",
+    "servingSize": "1 package",
+    "calories": "160",
+    "fat": "10",
+    "carb": "16",
+    "fiber": "1",
+    "sugar": "0",
+    "protein": "2",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51xalc1RqkL.jpg",
+    "nutritionLabelUrl": "https://images-na.ssl-images-amazon.com/images/I/71oGrCnv4ZL._SY679_.jpg"
   }
 }

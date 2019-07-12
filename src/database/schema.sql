@@ -18,18 +18,19 @@ CREATE TABLE days (
 
 DROP TABLE IF EXISTS foods (
   food_id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(user_id)
   created_on TIMESTAMP NOT NULL,
   updated_on TIMESTAMP NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  serving_size VARCHAR(50) NOT NULL,
   calories SMALLINT NOT NULL,
-  protein SMALLINT NOT NULL,
   fat SMALLINT NOT NULL,
   carb SMALLINT NOT NULL,
-  sugar SMALLINT NOT NULL,
   fiber SMALLINT NOT NULL,
-  serving_size VARCHAR(50) NOT NULL,
-  is_user_added BOOLEAN,
-  image_link VARCHAR(255),
-  nutrition_label VARCHAR(255)
+  sugar SMALLINT NOT NULL,
+  protein SMALLINT NOT NULL,
+  image_url VARCHAR(255),
+  nutrition_label_url VARCHAR(255)
 )
 
 DROP TABLE IF EXISTS entries

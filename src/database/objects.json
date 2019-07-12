@@ -1,0 +1,16 @@
+{
+  "template": {
+    "userId": "null",
+    "name": "",
+    "servingSize": "",
+    "calories": "",
+    "fat": "",
+    "carb": "",
+    "fiber": "",
+    "sugar": "",
+    "protein": "",
+    "imageUrl": "",
+    "nutritionLabelUrl": ""
+  }
+}
+
