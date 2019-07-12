@@ -18,10 +18,11 @@ CREATE TABLE days (
 
 DROP TABLE IF EXISTS foods (
   food_id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(user_id)
   created_on TIMESTAMP NOT NULL,
   updated_on TIMESTAMP NOT NULL,
+  user_id INTEGER REFERENCES users(user_id)
   name VARCHAR(100) NOT NULL,
+  flavor VARCHAR(100),
   serving_size VARCHAR(50) NOT NULL,
   calories SMALLINT NOT NULL,
   fat SMALLINT NOT NULL,
