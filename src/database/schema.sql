@@ -1,7 +1,7 @@
 CREATE SCHEMA snack
 
 DROP TABLE IF EXISTS users
-CREATE TABLE players (
+CREATE TABLE users (
   user_id serial PRIMARY KEY,
   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -18,11 +18,13 @@ CREATE TABLE days (
   date DATE NOT NULL
 )
 
-DROP TABLE IF EXISTS foods (
+DROP TABLE IF EXISTS foods
+CREATE TABLE foods (
   food_id SERIAL PRIMARY KEY,
   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  user_id INTEGER REFERENCES users(user_id)
+  user_id INTEGER REFERENCES users(user_id),
+  -- user_id INTEGER,
   name VARCHAR(100) NOT NULL,
   flavor VARCHAR(100),
   serving_size VARCHAR(50) NOT NULL,
@@ -52,7 +54,7 @@ CREATE TABLE user_food (
   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_id INTEGER REFERENCES users(user_id),
-  food_id INTEGER REFERENCES foods(food_id),
+  food_id INTEGER REFERENCES foods(food_id)
 )
 
 
