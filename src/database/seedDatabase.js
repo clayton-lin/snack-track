@@ -22,58 +22,54 @@ client.connect();
 
 const snackCol = '(user_id, name, flavor, serving_size, calories, fat, carb, fiber, sugar, protein, image_url, nutrition_label_url)';
 const snackParam = '($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)';
+const promiseArr = [];
 
-const seedDbWithSnacks = async (snacks) => {
-  snacks.forEach((snack) => {
-    const text = `INSERT INTO foods ${snackCol} VALUES ${snackParam}`;
-    const values = [
-      snack.userId,
-      snack.name,
-      snack.flavor,
-      snack.servingSize,
-      snack.calories,
-      snack.fat,
-      snack.carb,
-      snack.fiber,
-      snack.sugar,
-      snack.protein,
-      snack.imageUrl,
-      snack.nutritionLabelUrl
-    ];
+const getValuesArr = (snack) => {
+  const values = [
+    snack.userId,
+    snack.name,
+    snack.flavor,
+    snack.servingSize,
+    snack.calories,
+    snack.fat,
+    snack.carb,
+    snack.fiber,
+    snack.sugar,
+    snack.protein,
+    snack.imageUrl,
+    snack.nutritionLabelUrl
+  ];
 
-    values.forEach((ele, i) => {
-      if (ele === 'null') {
-        values[i] = null;
-      }
-    });
-
-    // client.query(text, values, (err, res) => {
-    //   if (err) {
-    //     console.log('Error inserting snack to database');
-    //     throw err;
-    //   }
-
-      // console.log(Object.keys(res));
-      // console.log(res);
-
-      // const snack = res.rows[0];
-      // console.log(snack);
-      // const foodName = snack.name + (snack.flavor ? (` ${snack.flavor}`) : '');
-      // console.log(`Snack "${foodName}" successfully added to database with id ${snack.id}`);
-      // client.end();
-    // });
-
-
-    try {
-      const res = await client.query(text, values);
-      const foodName = snack.name + (snack.flavor ? (` ${snack.flavor}`) : '');
-      console.log(`Snack "${foodName}" successfully added to database`);
-    } catch(err) {
-      console.log('Error inserting snack to database');
-      throw err;
+  // convert 'null' string to null value
+  values.forEach((ele, i) => {
+    if (ele === 'null') {
+      values[i] = null;
     }
   });
-  client.end();
+
+  return values;
+};
+
+const seedDbWithSnacks = (snacks) => {
+  snacks.forEach(async (snack) => {
+    const text = `INSERT INTO foods ${snackCol} VALUES ${snackParam}`;
+    const values = getValuesArr(snack);
+
+    promiseArr.push(
+      client.query(text, values)
+      .then(() => {
+        const foodName = snack.name + ((snack.flavor === 'null') ? '' : (` ${snack.flavor}`));
+        console.log(`Snack "${foodName}" successfully added to database`);
+      })
+    );
+
+  });
+
+  Promise.all(promiseArr)
+    .then(() => {
+      client.end();
+      console.log('Database connection closed')
+    })
 };
 
 seedDbWithSnacks(snacks);
