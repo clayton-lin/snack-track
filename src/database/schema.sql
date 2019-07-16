@@ -1,24 +1,24 @@
 CREATE SCHEMA snack
 
-DROP TABLE IF EXISTS users
+DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   user_id serial PRIMARY KEY,
   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   email VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL
-)
+);
 
-DROP TABLE IF EXISTS days
+DROP TABLE IF EXISTS days;
 CREATE TABLE days (
   day_id SERIAL PRIMARY KEY,
   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_id INTEGER REFERENCES users(user_id),
   date DATE NOT NULL
-)
+);
 
-DROP TABLE IF EXISTS foods
+DROP TABLE IF EXISTS foods;
 CREATE TABLE foods (
   food_id SERIAL PRIMARY KEY,
   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -36,9 +36,9 @@ CREATE TABLE foods (
   protein SMALLINT NOT NULL,
   image_url VARCHAR(255),
   nutrition_label_url VARCHAR(255)
-)
+);
 
-DROP TABLE IF EXISTS entries
+DROP TABLE IF EXISTS entries;
 CREATE TABLE entries (
   entry_id SERIAL PRIMARY KEY,
   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -46,15 +46,16 @@ CREATE TABLE entries (
   day_id INTEGER REFERENCES days(day_id),
   food_id INTEGER REFERENCES foods(food_id),
   num_servings INTEGER NOT NULL
-)
+);
 
-DROP TABLE IF EXISTS user_food
+--  Table for foods saved by user
+DROP TABLE IF EXISTS user_food;
 CREATE TABLE user_food (
   id SERIAL PRIMARY KEY,
   created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_id INTEGER REFERENCES users(user_id),
   food_id INTEGER REFERENCES foods(food_id)
-)
+);
 
 
