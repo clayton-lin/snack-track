@@ -15,13 +15,30 @@ const client = new pg.Client({
   port: process.env.PORT || PG_PORT,
 });
 
-client.connect();
+client
+  .connect()
+  .then(() => {
+    console.log('Connected to database');
+  })
+  .catch((err) => {
+    console.error('Database connection error', err)
+  });
 
-client.query('SELECT * FROM users', (err, res) => {
-  console.log(res.rows);
-  client.end();
-});
+const getAllSnacks = async (id) => {
+  const query = id ? `SELECT * FROM foods WHERE user_id IS NULL OR user_id=${id}` : 'SELECT * FROM foods WHERE user_id IS NULL'
+  let snacks;
 
+  await client.query(query)
+    .then((res) => {
+      snacks = res.rows
+    })
+    .catch((err) => {
+      console.log('Error: ', err);
+    });
 
+  return snacks;
+}
 
-
+module.exports = {
+  getAllSnacks
+};
