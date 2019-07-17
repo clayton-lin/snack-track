@@ -45,15 +45,19 @@ const _createNewDay = async (id, date) => {
 }
 
 const getDayEntries = async (id, date) => {
-  const query = `SELECT day_id FROM days WHERE user_id=${id} AND date='${date}'`;
+  const queryDayId = `SELECT day_id FROM days WHERE user_id=${id} AND date='${date}'`;
   let entries = null;
 
-  await client.query(query)
+  await client.query(queryDayId)
     .then((res) => {
       return res.rows[0] ? res.rows[0].day_id : _createNewDay(id, date);
     })
     .then((dayId) => {
-      console.log('here is the id: ', dayId);
+      const queryEntries = `SELECT * FROM entries WHERE day_id=${dayId}`;
+      return client.query(queryEntries);
+    })
+    .then((res) => {
+      entries = res.rows;
     })
     .catch((err) => { console.log('Error: ', err); });
 
