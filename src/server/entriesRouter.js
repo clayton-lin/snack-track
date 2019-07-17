@@ -5,7 +5,6 @@ const router = Router();
 const addNewEntry = async (req, res) => {
   const { dayId, foodId } = req.body;
   const newEntry = await db.addNewEntry(dayId, foodId);
-  console.log(newEntry)
   res.send(newEntry);
 }
 
