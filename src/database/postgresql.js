@@ -64,7 +64,31 @@ const getDayEntries = async (id, date) => {
   return entries;
 }
 
+const addNewEntry = async (dayId, foodId) => {
+  const query = `INSERT INTO entries (day_id, food_id, num_servings) VALUES (${dayId}, ${foodId}, 1) RETURNING *`;
+  let entry = null;
+
+  await client.query(query)
+    .then((res) => { entry = res.rows[0]; })
+    .catch((err) => { console.log('Error: ', err); });
+
+  return entry;
+}
+
+const updateEntryServings = async (entryId, servings) => {
+  const query = `UPDATE entries SET num_servings=${servings} WHERE entry_id=${entryId} RETURNING *`;
+  let entry = null;
+
+  await client.query(query)
+    .then((res) => { entry = res.rows[0]; })
+    .catch((err) => { console.log('Error: ', err); });
+
+  return entry;  
+}
+
 module.exports = {
   getAllSnacks,
-  getDayEntries
+  getDayEntries,
+  addNewEntry,
+  updateEntryServings
 };
