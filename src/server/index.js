@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('../database/postgresql');
 const snacksRouter = require('./snacksRouter');
 const daysRouter = require('./daysRouter');
 const entriesRouter = require('./entriesRouter');
